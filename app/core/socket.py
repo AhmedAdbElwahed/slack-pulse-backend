@@ -1,5 +1,6 @@
 from typing import Dict, List
 from fastapi import WebSocket
+import json
 
 
 class ConnectionManager:
@@ -25,12 +26,13 @@ class ConnectionManager:
                     del self.active_connections[workspace_id]
         print(f"Client disconnected from Workspace {workspace_id}")
 
-    async def broadcast(self, workspace_id: int, message: str):
+    async def broadcast(self, workspace_id: int, message: dict):
         """Sends a message to all users in a specific workspace."""
         if workspace_id in self.active_connections:
+            json_message = json.dumps(message, default=str)
             for connection in self.active_connections[workspace_id]:
                 try:
-                    await connection.send_text(message)
+                    await connection.send_text(json_message)
                 except Exception as e:
                     # If sending fails (e.g., socket closed), we might remove it here
                     # But usually, the 'disconnect' method handles cleanup.

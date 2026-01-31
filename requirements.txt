@@ -5,3 +5,7 @@ psycopg2-binary
 pydantic-settings
 sqlalchemy-utils
 alembic
+openai
+instructor
+ollama
+redis

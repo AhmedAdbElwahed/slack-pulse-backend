@@ -2,6 +2,13 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlmodel import Session, select
 from typing import List
 
+from app.models.task import Task
+from app.models.user import User
+from app.models.workspace import Workspace
+from app.models.board import Board
+from app.models.column import Column
+
+
 from app.db.session import get_session
 from app.models.task import Task
 from app.schemas.task import TaskCreate, TaskRead, TaskUpdate

@@ -9,6 +9,8 @@ class Settings(BaseSettings):
         "DATABASE_URL", "postgresql://postgres:password@localhost:5432/pulse_db"
     )
     REDIS_URL: str = os.getenv("REDIS_URL", "redis://redis:6379/0")
+    OLLAMA_BASE_URL: str = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434/v1")
+    OLLAMA_MODEL: str = os.getenv("OLLAMA_MODEL", "llama3")
 
     class Config:
         env_file = ".env"
