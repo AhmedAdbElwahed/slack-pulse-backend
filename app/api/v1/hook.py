@@ -55,6 +55,8 @@ async def create_task(task: TaskCreate, session: Session = Depends(get_session))
 async def update_task(
     task_id: int, task_update: TaskUpdate, session: Session = Depends(get_session)
 ):
+
+    print("updating task: ", task_id, task_update.model_dump())
     db_task = session.get(Task, task_id)
     if not db_task:
         raise HTTPException(status_code=404, detail="Task not found")
